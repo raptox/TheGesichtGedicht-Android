@@ -26,4 +26,5 @@ dependencies {
     compile 'com.android.support:support-v4:23+'
     compile 'com.google.android.gms:play-services:7.8.+'
     compile 'com.android.support:design:23.0.0'
+    compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
 }
