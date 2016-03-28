@@ -9,4 +9,5 @@
     <string name="activity_name_faceTracker">Find Gesicht for Gedicht</string>
     <string name="activity_name_showLastPoem">Your Gesicht Gedicht</string>
     <string name="btn_useGesicht">Use Gesicht</string>
+    <string name="activity_name_findPoem">Gesicht OK?</string>
 </resources>

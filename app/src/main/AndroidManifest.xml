@@ -31,6 +31,11 @@
             android:parentActivityName=".activities.MainActivity"
             android:label="@string/activity_name_showLastPoem">
         </activity>
+        <activity android:name=".activities.FindPoemForFaceActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".activities.FaceTrackerActivity"
+            android:label="@string/activity_name_findPoem"
+            ></activity>
     </application>
 
 </manifest>

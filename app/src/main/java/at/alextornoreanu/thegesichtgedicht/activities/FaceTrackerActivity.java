@@ -21,12 +21,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -35,12 +39,14 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
+import com.google.inject.Inject;
 
 import java.io.IOException;
 
 import at.alextornoreanu.thegesichtgedicht.R;
 import at.alextornoreanu.thegesichtgedicht.camera.CameraSourcePreview;
 import at.alextornoreanu.thegesichtgedicht.camera.GraphicOverlay;
+import at.alextornoreanu.thegesichtgedicht.services.FaceAndPoemService;
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;
 
@@ -61,10 +67,30 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
+    private Face mFace = null;
+    @Inject FaceAndPoemService faceAndPoemService;
+
     public void useGesicht(View view) {
         Log.d(TAG, "useGesicht");
+        if (mFace == null) {
+            Toast.makeText(this, "no face found", Toast.LENGTH_SHORT).show();
+        } else {
+            takePhotoAndGoToNextActivity();
+        }
     }
 
+    private void takePhotoAndGoToNextActivity() {
+        mCameraSource.takePicture(null, new CameraSource.PictureCallback() {
+            @Override
+            public void onPictureTaken(byte[] bytes) {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                faceAndPoemService.setFacePicture(bitmap);
+                faceAndPoemService.setFace(mFace);
+                Intent intent = new Intent(FaceTrackerActivity.this, FindPoemForFaceActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     //==============================================================================================
     // Activity Methods
@@ -309,6 +335,7 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
         public void onUpdate(FaceDetector.Detections<Face> detectionResults, Face face) {
             mOverlay.add(mFaceGraphic);
             mFaceGraphic.updateFace(face);
+            mFace = face;
         }
 
         /**
