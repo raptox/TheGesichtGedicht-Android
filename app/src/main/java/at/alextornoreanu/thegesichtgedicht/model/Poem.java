@@ -18,6 +18,12 @@ public class Poem {
         this.title = title;
         this.text = text;
         this.author = author;
+        replaceEscapedFormatSymbolsInText();
+    }
+
+    private void replaceEscapedFormatSymbolsInText() {
+        text = text.replace("\\n", "\n")
+                .replace("\\r","");
     }
 
     public String getTitle() {
@@ -34,6 +40,7 @@ public class Poem {
 
     public void setText(String text) {
         this.text = text;
+        replaceEscapedFormatSymbolsInText();
     }
 
     public String getAuthor() {

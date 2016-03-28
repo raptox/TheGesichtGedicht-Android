@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void testDb() {
-        Cursor cursor = poemsDbService.getRandomPoems();
+        Cursor cursor = poemsDbService.getNrandomPoems();
 //        while (!cursor.isAfterLast()) {
 //            System.out.println(cursor.getString(2));
 //            cursor.moveToNext();

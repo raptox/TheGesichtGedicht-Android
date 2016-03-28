@@ -40,7 +40,7 @@ public class ShowLastPoemActivity extends Activity {
     }
 
     private void setTextViews() {
-        Cursor cursor = poemsDbService.getRandomPoems();
+        Cursor cursor = poemsDbService.getNrandomPoems();
         Poem poem = new Poem(cursor.getString(1), cursor.getString(2), cursor.getString(0));
 //        Poem poem = savedDataService.getSavedLastPoem();
         Log.d(TAG, poem.toString());
