@@ -61,6 +61,11 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
+    public void useGesicht(View view) {
+        Log.d(TAG, "useGesicht");
+    }
+
+
     //==============================================================================================
     // Activity Methods
     //==============================================================================================

@@ -8,4 +8,5 @@
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
     <string name="activity_name_faceTracker">Find Gesicht for Gedicht</string>
     <string name="activity_name_showLastPoem">Your Gesicht Gedicht</string>
+    <string name="btn_useGesicht">Use Gesicht</string>
 </resources>
