@@ -27,4 +27,6 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.8.+'
     compile 'com.android.support:design:23.0.0'
     compile 'com.readystatesoftware.sqliteasset:sqliteassethelper:+'
+    compile 'org.roboguice:roboguice:3.+'
+    provided 'org.roboguice:roboblender:3.+'
 }

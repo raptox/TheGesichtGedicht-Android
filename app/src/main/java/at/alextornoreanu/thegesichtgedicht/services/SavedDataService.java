@@ -4,17 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import at.alextornoreanu.thegesichtgedicht.model.Poem;
 
 /**
  * Created by alex on 28.03.16.
  */
+@Singleton
 public class SavedDataService {
     private Context mContext;
     private static final String POEM_TITLE = "POEM_TITLE";
     private static final String POEM_AUTHOR = "POEM_AUTHOR";
     private static final String POEM_TEXT = "POEM_TEXT";
 
+    @Inject
     public SavedDataService(Context context) {
         mContext = context;
     }

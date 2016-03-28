@@ -1,46 +1,42 @@
 package at.alextornoreanu.thegesichtgedicht.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.inject.Inject;
+
 import at.alextornoreanu.thegesichtgedicht.R;
 import at.alextornoreanu.thegesichtgedicht.model.Poem;
-import at.alextornoreanu.thegesichtgedicht.services.DependencyContainer;
 import at.alextornoreanu.thegesichtgedicht.services.SavedDataService;
+import roboguice.activity.RoboActionBarActivity;
+import roboguice.inject.ContentView;
+import roboguice.inject.InjectView;
 
 /**
  * Created by alex on 28.03.16.
  */
-public class ShowLastPoemActivity extends AppCompatActivity {
+@ContentView(R.layout.activity_showlast)
+public class ShowLastPoemActivity extends RoboActionBarActivity {
     private static final String TAG = "ShowLastPoemActivity";
 
-    private TextView mTitle;
-    private TextView mText;
-    private TextView mAuthor;
+    @InjectView(R.id.poemTitle) TextView titleView;
+    @InjectView(R.id.poemText) TextView textView;
+    @InjectView(R.id.poemAuthor) TextView authorView;
 
-    private SavedDataService savedDataService = DependencyContainer.getInstance().savedDataService;
+    @Inject SavedDataService savedDataService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_showlast);
-        initUi();
         setTextViews();
-    }
-
-    private void initUi() {
-        mTitle = (TextView) findViewById(R.id.poemTitle);
-        mText = (TextView) findViewById(R.id.poemText);
-        mAuthor = (TextView) findViewById(R.id.poemAuthor);
     }
 
     private void setTextViews() {
         Poem poem = savedDataService.getSavedLastPoem();
         Log.d(TAG, poem.toString());
-        mTitle.setText(poem.getTitle());
-        mText.setText(poem.getText());
-        mAuthor.setText(poem.getAuthor());
+        titleView.setText(poem.getTitle());
+        textView.setText(poem.getText());
+        authorView.setText(poem.getAuthor());
     }
 }

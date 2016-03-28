@@ -5,11 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 /**
  * Created by alex on 27.03.16.
  */
+@Singleton
 public class PoemsDbService extends SQLiteAssetHelper {
     public static final String DATABASE_NAME = "Poems.db";
     private static final int DATABASE_VERSION = 1;
@@ -25,6 +28,7 @@ public class PoemsDbService extends SQLiteAssetHelper {
     SQLiteQueryBuilder queryBuilder;
     String [] sqlSelect = {POEMS_COLUMN_AUTOR, POEMS_COLUMN_TITLE, POEMS_COLUMN_TEXT};
 
+    @Inject
     public PoemsDbService(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         readyUpDatabase();

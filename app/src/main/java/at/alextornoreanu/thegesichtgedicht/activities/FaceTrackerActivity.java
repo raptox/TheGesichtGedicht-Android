@@ -25,7 +25,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -42,12 +41,15 @@ import java.io.IOException;
 import at.alextornoreanu.thegesichtgedicht.R;
 import at.alextornoreanu.thegesichtgedicht.camera.CameraSourcePreview;
 import at.alextornoreanu.thegesichtgedicht.camera.GraphicOverlay;
+import roboguice.activity.RoboActionBarActivity;
+import roboguice.inject.ContentView;
 
 /**
  * Activity for the face tracker app.  This app detects faces with the rear facing camera, and draws
  * overlay graphics to indicate the position, size, and ID of each face.
  */
-public final class FaceTrackerActivity extends AppCompatActivity {
+@ContentView(R.layout.activity_facetracker)
+public final class FaceTrackerActivity extends RoboActionBarActivity {
     private static final String TAG = "FaceTracker";
 
     private CameraSource mCameraSource = null;
@@ -69,7 +71,6 @@ public final class FaceTrackerActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
-        setContentView(R.layout.activity_facetracker);
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);

@@ -3,33 +3,28 @@ package at.alextornoreanu.thegesichtgedicht.activities;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import at.alextornoreanu.thegesichtgedicht.R;
-import at.alextornoreanu.thegesichtgedicht.services.PoemsDbService;
-import at.alextornoreanu.thegesichtgedicht.model.Poem;
-import at.alextornoreanu.thegesichtgedicht.services.DependencyContainer;
-import at.alextornoreanu.thegesichtgedicht.services.SavedDataService;
+import com.google.inject.Inject;
 
-public class MainActivity extends AppCompatActivity {
+import at.alextornoreanu.thegesichtgedicht.R;
+import at.alextornoreanu.thegesichtgedicht.model.Poem;
+import at.alextornoreanu.thegesichtgedicht.services.PoemsDbService;
+import at.alextornoreanu.thegesichtgedicht.services.SavedDataService;
+import roboguice.activity.RoboActionBarActivity;
+import roboguice.inject.ContentView;
+
+@ContentView(R.layout.activity_main)
+public class MainActivity extends RoboActionBarActivity {
     private static final String TAG = "MainActivity";
-    private SavedDataService savedDataService;
-    private PoemsDbService poemsDbService;
+    @Inject SavedDataService savedDataService;
+    @Inject PoemsDbService poemsDbService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        setUpDependencies();
         testDb();
-    }
-
-    private void setUpDependencies() {
-        DependencyContainer.createInstance(this);
-        savedDataService = DependencyContainer.getInstance().savedDataService;
-        poemsDbService = DependencyContainer.getInstance().poemsDbService;
     }
 
     private void testDb() {
