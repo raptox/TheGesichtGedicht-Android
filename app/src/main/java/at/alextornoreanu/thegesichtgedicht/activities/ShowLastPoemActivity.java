@@ -1,13 +1,11 @@
 package at.alextornoreanu.thegesichtgedicht.activities;
 
-import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
 import at.alextornoreanu.thegesichtgedicht.R;
-import at.alextornoreanu.thegesichtgedicht.services.PoemsDbService;
 import at.alextornoreanu.thegesichtgedicht.model.Poem;
 import at.alextornoreanu.thegesichtgedicht.services.DependencyContainer;
 import at.alextornoreanu.thegesichtgedicht.services.SavedDataService;
@@ -15,7 +13,7 @@ import at.alextornoreanu.thegesichtgedicht.services.SavedDataService;
 /**
  * Created by alex on 28.03.16.
  */
-public class ShowLastPoemActivity extends Activity {
+public class ShowLastPoemActivity extends AppCompatActivity {
     private static final String TAG = "ShowLastPoemActivity";
 
     private TextView mTitle;
@@ -23,7 +21,6 @@ public class ShowLastPoemActivity extends Activity {
     private TextView mAuthor;
 
     private SavedDataService savedDataService = DependencyContainer.getInstance().savedDataService;
-    private PoemsDbService poemsDbService = DependencyContainer.getInstance().poemsDbService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +37,7 @@ public class ShowLastPoemActivity extends Activity {
     }
 
     private void setTextViews() {
-        Cursor cursor = poemsDbService.getNrandomPoems();
-        Poem poem = new Poem(cursor.getString(1), cursor.getString(2), cursor.getString(0));
-//        Poem poem = savedDataService.getSavedLastPoem();
+        Poem poem = savedDataService.getSavedLastPoem();
         Log.d(TAG, poem.toString());
         mTitle.setText(poem.getTitle());
         mText.setText(poem.getText());

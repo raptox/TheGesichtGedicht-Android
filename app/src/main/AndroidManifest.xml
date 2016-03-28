@@ -20,8 +20,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.FaceTrackerActivity"></activity>
-        <activity android:name=".activities.ShowLastPoemActivity"></activity>
+        <activity android:name=".activities.FaceTrackerActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:label="@string/activity_name_faceTracker">
+        </activity>
+        <activity android:name=".activities.ShowLastPoemActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:label="@string/activity_name_showLastPoem">
+        </activity>
     </application>
 
 </manifest>
