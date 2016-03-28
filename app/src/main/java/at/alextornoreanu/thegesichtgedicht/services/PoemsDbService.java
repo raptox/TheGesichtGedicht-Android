@@ -40,8 +40,8 @@ public class PoemsDbService extends SQLiteAssetHelper {
         queryBuilder.setTables(POEMS_TABLE_NAME);
     }
 
-    public Cursor getNrandomPoems() {
-        String sqlQuery = "SELECT * FROM " + POEMS_TABLE_NAME + " ORDER BY RANDOM() LIMIT " + RANDOM_NUMBER_OF_POEMS;
+    public Cursor getNrandomPoems(int numberOfPoems) {
+        String sqlQuery = "SELECT * FROM " + POEMS_TABLE_NAME + " ORDER BY RANDOM() LIMIT " + numberOfPoems;
         Cursor cursor = database.rawQuery(sqlQuery, null);
         cursor.moveToFirst();
         return cursor;

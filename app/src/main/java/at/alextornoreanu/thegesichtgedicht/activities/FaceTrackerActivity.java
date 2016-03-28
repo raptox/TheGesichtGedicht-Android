@@ -83,11 +83,15 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
         mCameraSource.takePicture(null, new CameraSource.PictureCallback() {
             @Override
             public void onPictureTaken(byte[] bytes) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                faceAndPoemService.setFacePicture(bitmap);
                 faceAndPoemService.setFace(mFace);
-                Intent intent = new Intent(FaceTrackerActivity.this, FindPoemForFaceActivity.class);
-                startActivity(intent);
+                if (faceAndPoemService.doesFaceHaveTwoEyes()) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    faceAndPoemService.setFacePicture(bitmap);
+                    Intent intent = new Intent(FaceTrackerActivity.this, FindPoemForFaceActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(FaceTrackerActivity.this, "both eyes need to be visible", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
