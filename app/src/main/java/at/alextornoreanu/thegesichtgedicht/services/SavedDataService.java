@@ -22,9 +22,9 @@ public class SavedDataService {
     public void saveToLastPoem(Poem poem) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(poem.getTitle(), POEM_TITLE);
-        editor.putString(poem.getAuthor(), POEM_AUTHOR);
-        editor.putString(poem.getText(), POEM_TEXT);
+        editor.putString(POEM_TITLE, poem.getTitle());
+        editor.putString(POEM_AUTHOR, poem.getAuthor());
+        editor.putString(POEM_TEXT, poem.getText());
         editor.apply();
     }
 
