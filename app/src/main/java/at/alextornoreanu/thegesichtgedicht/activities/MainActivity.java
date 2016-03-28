@@ -34,7 +34,7 @@ public class MainActivity extends RoboActionBarActivity {
     }
 
     private void loadImageIntoYourGesicht() {
-        if (savedDataService.isPoemAvailable()) {
+        if (savedDataService.isYourGedichtAvailable()) {
             setUserGesicht();
         } else {
             setPoetGesicht();
@@ -64,7 +64,7 @@ public class MainActivity extends RoboActionBarActivity {
     public void showLastGedicht(View view) {
         Log.d(TAG, "showLastGedicht");
 
-        if (savedDataService.isPoemAvailable()) {
+        if (savedDataService.isYourGedichtAvailable()) {
             Intent intent = new Intent(this, ShowLastPoemActivity.class);
             startActivity(intent);
         } else {

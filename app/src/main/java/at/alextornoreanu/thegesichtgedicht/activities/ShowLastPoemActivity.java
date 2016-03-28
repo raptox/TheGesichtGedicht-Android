@@ -32,7 +32,7 @@ public class ShowLastPoemActivity extends RoboActionBarActivity {
     }
 
     private void setTextViews() {
-        Poem poem = savedDataService.getSavedLastPoem();
+        Poem poem = savedDataService.getYourGedicht();
         titleView.setText(poem.getTitle());
         textView.setText(poem.getText());
         authorView.setText(poem.getAuthor());

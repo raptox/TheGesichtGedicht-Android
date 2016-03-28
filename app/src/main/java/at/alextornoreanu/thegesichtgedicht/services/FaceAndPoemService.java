@@ -52,7 +52,7 @@ public class FaceAndPoemService {
     public void findGesichtGedicht() {
         Cursor cursor = poemsDbService.getNrandomPoems();
         Poem poem = new Poem(cursor.getString(1), cursor.getString(2), cursor.getString(0));
-        savedDataService.saveToLastPoem(poem);
+        savedDataService.saveYourGedicht(poem);
         saveFaceBitmapToDisk();
     }
 
