@@ -1,7 +1,6 @@
 package at.alextornoreanu.thegesichtgedicht.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.google.inject.Inject;
@@ -34,7 +33,6 @@ public class ShowLastPoemActivity extends RoboActionBarActivity {
 
     private void setTextViews() {
         Poem poem = savedDataService.getSavedLastPoem();
-        Log.d(TAG, poem.toString());
         titleView.setText(poem.getTitle());
         textView.setText(poem.getText());
         authorView.setText(poem.getAuthor());

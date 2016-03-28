@@ -27,6 +27,8 @@
         android:id="@+id/button3"
         android:layout_below="@id/preview"
         android:layout_centerHorizontal="true"
-        android:onClick="useGesicht"/>
+        android:onClick="useGesicht"
+        android:layout_marginTop="15dp"
+        style="@style/btnStyleSandrift"/>
 
 </RelativeLayout>

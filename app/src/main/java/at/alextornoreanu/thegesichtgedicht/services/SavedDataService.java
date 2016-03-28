@@ -24,6 +24,14 @@ public class SavedDataService {
         mContext = context;
     }
 
+    public boolean isPoemAvailable() {
+        if (getSavedLastPoem().getAuthor().equals("N/A")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public void saveToLastPoem(Poem poem) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -36,9 +44,9 @@ public class SavedDataService {
     public Poem getSavedLastPoem() {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
         Poem poem = new Poem();
-        poem.setAuthor(sharedPref.getString(POEM_AUTHOR, "No Autor"));
-        poem.setText(sharedPref.getString(POEM_TEXT, "No Text"));
-        poem.setTitle(sharedPref.getString(POEM_TITLE, "No Title"));
+        poem.setAuthor(sharedPref.getString(POEM_AUTHOR, "N/A"));
+        poem.setText(sharedPref.getString(POEM_TEXT, "N/A"));
+        poem.setTitle(sharedPref.getString(POEM_TITLE, "N/A"));
         return poem;
     }
 }

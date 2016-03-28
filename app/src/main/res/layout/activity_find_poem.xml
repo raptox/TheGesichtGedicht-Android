@@ -16,5 +16,7 @@
         android:text="@string/btn_findGedicht"
         android:id="@+id/button4"
         android:layout_gravity="center_horizontal"
-        android:onClick="findGedichtForGesicht"/>
+        android:onClick="findGedichtForGesicht"
+        android:layout_marginTop="15dp"
+        style="@style/btnStyleSandrift"/>
 </LinearLayout>

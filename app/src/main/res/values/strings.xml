@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">TheGesichtGedicht</string>
-    <string name="btn_findGedicht">find Gesicht Gedicht</string>
-    <string name="btn_showLastGedicht">show last Gedicht</string>
+    <string name="btn_findGedicht">Find Gesicht Gedicht</string>
+    <string name="btn_showLastGedicht">Show Your Gedicht</string>
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
@@ -10,4 +10,5 @@
     <string name="activity_name_showLastPoem">Your Gesicht Gedicht</string>
     <string name="btn_useGesicht">Use Gesicht</string>
     <string name="activity_name_findPoem">Gesicht OK?</string>
+    <string name="msg_noGedichtAvailable">Please find a Gedicht first!</string>
 </resources>
