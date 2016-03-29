@@ -1,9 +1,7 @@
 package at.alextornoreanu.thegesichtgedicht.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
@@ -11,7 +9,8 @@ import com.google.inject.Inject;
 
 import at.alextornoreanu.thegesichtgedicht.R;
 import at.alextornoreanu.thegesichtgedicht.application.TheGesichtGedicht;
-import at.alextornoreanu.thegesichtgedicht.services.FaceAndPoemService;
+import at.alextornoreanu.thegesichtgedicht.model.Poem;
+import at.alextornoreanu.thegesichtgedicht.services.SavedDataService;
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
@@ -19,17 +18,22 @@ import roboguice.inject.InjectView;
 /**
  * Created by alex on 28.03.16.
  */
-@ContentView(R.layout.activity_find_poem)
-public class FindPoemForFaceActivity extends RoboActionBarActivity {
+@ContentView(R.layout.activity_showlast)
+public class ShowMyGesichtGedichtActivity extends RoboActionBarActivity {
+    private static final String TAG = "ShowLastPoemActivity";
     private Tracker mTracker;
-    @InjectView(R.id.previewFace) ImageView imageView;
-    @Inject FaceAndPoemService faceAndPoemService;
+
+    @InjectView(R.id.poemTitle) TextView titleView;
+    @InjectView(R.id.poemText) TextView textView;
+    @InjectView(R.id.poemAuthor) TextView authorView;
+
+    @Inject SavedDataService savedDataService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         googleAnalyticsGetTracker();
-        imageView.setImageBitmap(faceAndPoemService.getFacePicture());
+        setTextViews();
     }
 
     @Override
@@ -38,10 +42,11 @@ public class FindPoemForFaceActivity extends RoboActionBarActivity {
         googleAnalyticsTrackActivity();
     }
 
-    public void findGedichtForGesicht(View view) {
-        faceAndPoemService.findGesichtGedicht();
-        Intent intent = new Intent(this, ShowLastPoemActivity.class);
-        startActivity(intent);
+    private void setTextViews() {
+        Poem poem = savedDataService.getYourGedicht();
+        titleView.setText(poem.getTitle());
+        textView.setText(poem.getText());
+        authorView.setText(poem.getAuthor());
     }
 
     private void googleAnalyticsGetTracker() {
@@ -50,7 +55,7 @@ public class FindPoemForFaceActivity extends RoboActionBarActivity {
     }
 
     private void googleAnalyticsTrackActivity() {
-        mTracker.setScreenName("MainActivity");
+        mTracker.setScreenName("ShowMyGesichtGedichtActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

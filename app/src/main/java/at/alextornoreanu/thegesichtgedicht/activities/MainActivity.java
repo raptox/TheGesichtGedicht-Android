@@ -68,7 +68,7 @@ public class MainActivity extends RoboActionBarActivity {
 
     public void findNewGedicht(View view) {
         Log.d(TAG, "findNewGedicht");
-        Intent intent = new Intent(this, FaceTrackerActivity.class);
+        Intent intent = new Intent(this, FaceCaptureActivity.class);
         startActivity(intent);
     }
 
@@ -76,7 +76,7 @@ public class MainActivity extends RoboActionBarActivity {
         Log.d(TAG, "showLastGedicht");
 
         if (savedDataService.isYourGedichtAvailable()) {
-            Intent intent = new Intent(this, ShowLastPoemActivity.class);
+            Intent intent = new Intent(this, ShowMyGesichtGedichtActivity.class);
             startActivity(intent);
         } else {
             Toast.makeText(this, R.string.msg_noGedichtAvailable, Toast.LENGTH_SHORT).show();

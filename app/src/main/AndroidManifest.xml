@@ -25,19 +25,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.FaceTrackerActivity"
+        <activity android:name=".activities.FaceCaptureActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".activities.MainActivity"
             android:label="@string/activity_name_faceTracker">
         </activity>
-        <activity android:name=".activities.ShowLastPoemActivity"
+        <activity android:name=".activities.ShowMyGesichtGedichtActivity"
             android:screenOrientation="portrait"
             android:parentActivityName=".activities.MainActivity"
             android:label="@string/activity_name_showLastPoem">
         </activity>
-        <activity android:name=".activities.FindPoemForFaceActivity"
+        <activity android:name=".activities.FindGesichtGedichtActivity"
             android:screenOrientation="portrait"
-            android:parentActivityName=".activities.FaceTrackerActivity"
+            android:parentActivityName=".activities.FaceCaptureActivity"
             android:label="@string/activity_name_findPoem"
             ></activity>
     </application>

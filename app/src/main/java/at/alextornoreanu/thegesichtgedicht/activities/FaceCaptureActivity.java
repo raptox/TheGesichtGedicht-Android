@@ -57,7 +57,7 @@ import roboguice.inject.ContentView;
  * overlay graphics to indicate the position, size, and ID of each face.
  */
 @ContentView(R.layout.activity_facetracker)
-public final class FaceTrackerActivity extends RoboActionBarActivity {
+public final class FaceCaptureActivity extends RoboActionBarActivity {
     private static final String TAG = "FaceTracker";
 
     private CameraSource mCameraSource = null;
@@ -90,10 +90,10 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
                 if (faceAndPoemService.doesFaceHaveTwoEyes()) {
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                     faceAndPoemService.setFacePicture(bitmap);
-                    Intent intent = new Intent(FaceTrackerActivity.this, FindPoemForFaceActivity.class);
+                    Intent intent = new Intent(FaceCaptureActivity.this, FindGesichtGedichtActivity.class);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(FaceTrackerActivity.this, "both eyes need to be visible", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FaceCaptureActivity.this, "both eyes need to be visible", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -105,7 +105,7 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
     }
 
     private void googleAnalyticsTrackActivity() {
-        mTracker.setScreenName("MainActivity");
+        mTracker.setScreenName("FaceCaptureActivity");
         mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
