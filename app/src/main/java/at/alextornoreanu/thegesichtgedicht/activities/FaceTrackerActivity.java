@@ -32,6 +32,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.CameraSource;
@@ -44,6 +45,7 @@ import com.google.inject.Inject;
 import java.io.IOException;
 
 import at.alextornoreanu.thegesichtgedicht.R;
+import at.alextornoreanu.thegesichtgedicht.application.TheGesichtGedicht;
 import at.alextornoreanu.thegesichtgedicht.camera.CameraSourcePreview;
 import at.alextornoreanu.thegesichtgedicht.camera.GraphicOverlay;
 import at.alextornoreanu.thegesichtgedicht.services.FaceAndPoemService;
@@ -67,6 +69,7 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
     // permission request codes need to be < 256
     private static final int RC_HANDLE_CAMERA_PERM = 2;
 
+    private com.google.android.gms.analytics.Tracker mTracker;
     private Face mFace = null;
     @Inject FaceAndPoemService faceAndPoemService;
 
@@ -96,6 +99,16 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
         });
     }
 
+    private void googleAnalyticsGetTracker() {
+        TheGesichtGedicht application = (TheGesichtGedicht) getApplication();
+        mTracker = application.getDefaultTracker();
+    }
+
+    private void googleAnalyticsTrackActivity() {
+        mTracker.setScreenName("MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+    }
+
     //==============================================================================================
     // Activity Methods
     //==============================================================================================
@@ -106,6 +119,7 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        googleAnalyticsGetTracker();
 
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay) findViewById(R.id.faceOverlay);
@@ -193,7 +207,7 @@ public final class FaceTrackerActivity extends RoboActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        googleAnalyticsTrackActivity();
         startCameraSource();
     }
 
