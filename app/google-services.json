@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_id": "thegesichtgedicht",
+    "project_number": "127276937854",
+    "name": "TheGesichtGedicht"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127276937854:android:237c6d79e2a027c8",
+        "client_id": "android:at.alextornoreanu.thegesichtgedicht",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "at.alextornoreanu.thegesichtgedicht",
+          "certificate_hash": []
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-59743009-3"
+          }
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
